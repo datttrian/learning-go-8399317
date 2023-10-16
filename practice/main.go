@@ -2,35 +2,28 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
+	"net/http"
 )
 
+const url = "http://services.explorecalifornia.org/json/tours.php"
+
 func main() {
-	poodle := Dog{"Poodle", 10, "Woof!"}
-	fmt.Println(poodle)
-	fmt.Printf("%+v\n", poodle)
-	fmt.Printf("Breed: %v\nWeight: %v\n", poodle.Breed, poodle.Weight)
 
-	poodle.Speak()
-	poodle.Sound = "Arf!"
-	poodle.Speak()
-	poodle.SpeakThreeTimes()
-	poodle.SpeakThreeTimes()
-}
+	resp, err := http.Get(url)
+	if err != nil {
+		panic(err)
+	}
 
-// Dog is a struct
-type Dog struct {
-	Breed  string
-	Weight int
-	Sound  string
-}
+	fmt.Printf("Response type: %T\n", resp)
 
-// Speak is how the dog speaks
-func (d Dog) Speak() {
-	fmt.Println(d.Sound)
-}
+	defer resp.Body.Close()
 
-// SpeakThreeTimes is how the dog speaks loudly
-func (d Dog) SpeakThreeTimes() {
-	d.Sound = fmt.Sprintf("%v %v %v", d.Sound, d.Sound, d.Sound)
-	fmt.Println(d.Sound)
+	bytes, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+
+	content := string(bytes)
+	fmt.Print(content)
 }
