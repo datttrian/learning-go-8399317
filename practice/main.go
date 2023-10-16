@@ -2,28 +2,25 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
+	"time"
 )
 
 func main() {
+	rand.Seed(time.Now().Unix())
 
-	theAnswer := 42
+	// fmt.Println("Day", dow)
+
 	var result string
-
-	if theAnswer < 0 {
-		result = "Less than zero"
-	} else if theAnswer == 0 {
-		result = "Equal to zero"
-	} else {
-		result = "Greater than zero"
+	switch dow := rand.Intn(7) + 1; dow {
+	case 1:
+		result = "It's Sunday!"
+		// fallthrough
+	case 2:
+		result = "It's Monday!"
+		// fallthrough
+	default:
+		result = "It's some other day!"
 	}
 	fmt.Println(result)
-
-	if x := -42; x < 0 {
-		result = "Less than zero"
-	} else if x == 0 {
-		result = "Equal to zero"
-	} else {
-		result = "Greater than zero"
-	}
-
 }
