@@ -2,25 +2,39 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
-	"time"
 )
 
 func main() {
-	rand.Seed(time.Now().Unix())
+	colors := []string{"Red", "Green", "Blue"}
+	fmt.Println(colors)
 
-	// fmt.Println("Day", dow)
-
-	var result string
-	switch dow := rand.Intn(7) + 1; dow {
-	case 1:
-		result = "It's Sunday!"
-		// fallthrough
-	case 2:
-		result = "It's Monday!"
-		// fallthrough
-	default:
-		result = "It's some other day!"
+	for i := 0; i < len(colors); i++ {
+		fmt.Println(colors[i])
 	}
-	fmt.Println(result)
+
+	for i := range colors {
+		fmt.Println(colors[i])
+	}
+
+	for _, color := range colors {
+		fmt.Println(color)
+	}
+
+	value := 1
+	for value < 10 {
+		fmt.Println("Value:", value)
+		value++
+	}
+
+	sum := 1
+	for sum < 1000 {
+		sum += sum
+		fmt.Println("Sum:", sum)
+		if sum > 200 {
+			goto theEnd
+		}
+	}
+
+theEnd:
+	fmt.Println("End of program")
 }
