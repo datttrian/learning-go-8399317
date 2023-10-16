@@ -2,32 +2,28 @@ package main
 
 import (
 	"fmt"
-	"sort"
 )
 
 func main() {
-	var colors = []string{"Red", "Green", "Blue"}
-	fmt.Println(colors)
-	colors = append(colors, "Purple")
-	fmt.Println(colors)
 
-	colors = append(colors[1:len(colors)])
-	fmt.Println(colors)
+	theAnswer := 42
+	var result string
 
-	colors = append(colors[:len(colors)-1])
-	fmt.Println(colors)
+	if theAnswer < 0 {
+		result = "Less than zero"
+	} else if theAnswer == 0 {
+		result = "Equal to zero"
+	} else {
+		result = "Greater than zero"
+	}
+	fmt.Println(result)
 
-	numbers := make([]int, 5)
-	numbers[0] = 134
-	numbers[1] = 72
-	numbers[2] = 32
-	numbers[3] = 12
-	numbers[4] = 156
-	fmt.Println(numbers)
+	if x := -42; x < 0 {
+		result = "Less than zero"
+	} else if x == 0 {
+		result = "Equal to zero"
+	} else {
+		result = "Greater than zero"
+	}
 
-	numbers = append(numbers, 235)
-	fmt.Println(numbers)
-
-	sort.Ints(numbers)
-	fmt.Println(numbers)
 }
